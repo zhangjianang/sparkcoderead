@@ -81,6 +81,12 @@
             <version>2.2.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-native_2.10</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+
 
         <!-- Thanks for using https://jar-download.com -->
         <dependency>
