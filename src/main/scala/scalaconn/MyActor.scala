@@ -34,6 +34,8 @@ class MyRespond extends Actor{
   override def receive: Receive = {
     case info:String => println("in MyRespond: "+info)
   }
+  println(self)
+  println(this)
 }
 
 object Main extends App {
