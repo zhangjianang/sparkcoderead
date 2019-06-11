@@ -17,10 +17,7 @@ public class L8StrToInt {
         for(int i=0;i<chars.length; i++) {
             char curchar = chars[i];
             if (!hasop) {
-                if ('+' == curchar || '-' == curchar) {
-                    sb.append(curchar);
-                    hasop = true;
-                }else if (MYINT.contains(curchar)) {
+                if ('+' == curchar || '-' == curchar || MYINT.contains(curchar)) {
                     sb.append(curchar);
                     hasop = true;
                 } else {
