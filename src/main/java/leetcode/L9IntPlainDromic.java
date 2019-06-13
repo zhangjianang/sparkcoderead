@@ -6,14 +6,14 @@ package leetcode;
 public class L9IntPlainDromic {
     public boolean isPalindrome(int x) {
 
-        if(x<0 || ( x>0 && x %10 ==0)){
+        if (x < 0 || (x > 0 && x % 10 == 0)) {
             return false;
         }
-        String str = x+"";
+        String str = x + "";
         int len = str.length();
         int index = len / 2;
-        for(int i=0;i<index;i++){
-            if(str.charAt(i) !=str.charAt(len - i-1) ){
+        for (int i = 0; i < index; i++) {
+            if (str.charAt(i) != str.charAt(len - i - 1)) {
                 return false;
             }
         }

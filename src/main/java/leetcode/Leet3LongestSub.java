@@ -9,30 +9,30 @@ public class Leet3LongestSub {
         String maxstr = "";
         char[] input = s.toCharArray();
         StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i < input.length ; i++){
+        for (int i = 0; i < input.length; i++) {
             boolean subhas = false;
             char cur = input[i];
-            int j=0;
-            for(; j < sb.length();j++){
-                if(cur == sb.charAt(j)){
-                    subhas  = true;
+            int j = 0;
+            for (; j < sb.length(); j++) {
+                if (cur == sb.charAt(j)) {
+                    subhas = true;
                     break;
                 }
             }
-            if(!subhas){
+            if (!subhas) {
                 sb.append(cur);
-            }else{
-                if(sb.length()>max){
+            } else {
+                if (sb.length() > max) {
                     max = sb.length();
                     maxstr = sb.toString();
                 }
-                String res = sb.substring(j+1);
+                String res = sb.substring(j + 1);
                 sb = new StringBuilder();
                 sb.append(res);
                 sb.append(cur);
             }
         }
-        if(sb.length()>max){
+        if (sb.length() > max) {
             max = sb.length();
             maxstr = sb.toString();
         }

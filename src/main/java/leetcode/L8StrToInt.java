@@ -7,14 +7,25 @@ import java.util.Set;
  * Created by adimn on 2019/6/6.
  */
 public class L8StrToInt {
-    private Set MYINT = new HashSet(){{add('9');add('8');add('7');add('6');add('5');add('4');add('0');add('1');add('2');add('3');}};
+    private Set MYINT = new HashSet() {{
+        add('9');
+        add('8');
+        add('7');
+        add('6');
+        add('5');
+        add('4');
+        add('0');
+        add('1');
+        add('2');
+        add('3');
+    }};
 
     public int myAtoi(String str) {
         str = str.trim();
         char[] chars = str.toCharArray();
         StringBuilder sb = new StringBuilder();
         boolean hasop = false;
-        for(int i=0;i<chars.length; i++) {
+        for (int i = 0; i < chars.length; i++) {
             char curchar = chars[i];
             if (!hasop) {
                 if ('+' == curchar || '-' == curchar || MYINT.contains(curchar)) {
@@ -32,14 +43,14 @@ public class L8StrToInt {
             }
         }
         System.out.println(sb.toString());
-        if("+".equals(sb.toString())|| "-".equals(sb.toString()) || "".equals(sb.toString())){
+        if ("+".equals(sb.toString()) || "-".equals(sb.toString()) || "".equals(sb.toString())) {
             return 0;
-        }else {
+        } else {
             try {
                 return Integer.parseInt(sb.toString());
-            }catch (NumberFormatException e){
-                if(sb.charAt(0) == '-'){
-                    return Integer.MIN_VALUE ;
+            } catch (NumberFormatException e) {
+                if (sb.charAt(0) == '-') {
+                    return Integer.MIN_VALUE;
                 }
                 return Integer.MAX_VALUE;
             }
