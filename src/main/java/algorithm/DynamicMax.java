@@ -15,15 +15,40 @@ public class DynamicMax {
         return q;
     }
 
+    public static int cutMemo(int[] p,int n){
+        int[] memo = new int[n+1];
+        for(int i=0;i< memo.length ;i++){
+            memo[i] = -1;
+        }
+        return cutAct(p,memo,n);
+    }
+    public static int cutAct(int[] p,int[] m,int n){
+        if(m[n]>=0){
+            return m[n];
+        }
+        if(n ==0){
+            m[n] = 0;
+        }else {
+            int q = Integer.MIN_VALUE;
+            for (int i = 1; i <= n; i++){
+                q = Math.max(q,p[i-1]+cutAct(p,m,n-i));
+            }
+            m[n] = q;
+        }
+        return m[n];
+    }
+
     public static void main(String[] args) {
-//        int[] price = {1,5,8,9,10,17,17,20,24,30};
+        int[] price = {1,5,8,9,10,17,17,20,24,30};
 //        System.out.println(cut(price,1));
 //        System.out.println(cut(price,2));
-//        System.out.println(cut(price,5));
-        System.out.println(fab(7));
+        System.out.println(cut(price,5));
+        System.out.println(cutMemo(price,5));
 
-        System.out.println(fabnacci(7));
-        System.out.println(fabnacciBottom(7));
+//        System.out.println(fab(7));
+//
+//        System.out.println(fabnacci(7));
+//        System.out.println(fabnacciBottom(7));
     }
 
     public static int fab(int n){
