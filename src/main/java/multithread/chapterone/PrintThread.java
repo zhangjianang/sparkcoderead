@@ -1,4 +1,4 @@
-package multithread;
+package multithread.chapterone;
 
 /**
  * Created by adimn on 2019/6/19.
