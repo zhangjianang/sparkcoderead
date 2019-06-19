@@ -15,7 +15,7 @@ public class Memento {
     }
 
     public List getFruits(){
-        return fruits;
+        return  fruits;
     }
 
     private void addFruit(String fruit){
