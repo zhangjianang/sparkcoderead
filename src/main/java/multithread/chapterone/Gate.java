@@ -6,12 +6,28 @@ package multithread.chapterone;
 public class Gate {
     private String name;
     private String address;
+
+    private final Mutex mutex = new Mutex();
+
     public synchronized void pass(String name,String address){
         this.name = name;
         this.address = address;
         check();
-
     }
+
+    public void mutexPass(String name,String address){
+        mutex.lock();
+        try {
+            this.name = name;
+            this.address = address;
+            check();
+        }catch (Exception e){
+
+        }finally {
+            mutex.unlock();
+        }
+    }
+
     public boolean check(){
         if(name.charAt(0) != address.charAt(0)){
             System.out.println("********* broken *********"+  toString());
@@ -49,7 +65,32 @@ class Passer extends Thread{
     public void run() {
         System.out.println(name + " begin");
         while (true){
-            gate.pass(name,address);
+//            gate.pass(name,address);
+            gate.mutexPass(name,address);
         }
+    }
+}
+
+//wait 和 notify必须在synchronize 里面 ，否则报错 IllegalMonitorStateException
+
+class Mutex{
+    private boolean isuse;
+
+    public Mutex(){
+        isuse =false;
+    }
+    public synchronized void lock(){
+        if(isuse){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        isuse =true;
+    }
+    public synchronized void unlock(){
+        isuse =false;
+        notifyAll();
     }
 }

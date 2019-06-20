@@ -15,8 +15,15 @@ public class Tool {
     public static void main(String[] args) {
         Tool left = new Tool("勺子");
         Tool right = new Tool("叉子");
-        new Eater("ang",left,right).start();
-        new Eater("lili",right,left).start();
+
+//        第一种改变顺序
+//        new Eater("ang",left,right).start();
+//        new Eater("lili",left,right).start();
+
+//        第二种 同时获取互斥资源
+        Pair pair = new Pair(left,right);
+        new Eater("john",pair).start();
+        new Eater("harry",pair).start();
     }
 }
 
@@ -31,9 +38,16 @@ class Eater extends Thread{
         this.leftHand = leftHand;
         this.rightHand = rightHand;
     }
+
+    public Eater(String name,Pair pair){
+        this.name = name;
+        this.leftHand = pair.getLeft();
+        this.rightHand = pair.getRight();
+    }
+
     public void run(){
         while (true){
-            eat2();
+            eat();
         }
     }
     public void eat(){
@@ -46,8 +60,10 @@ class Eater extends Thread{
             }
             System.out.println(name+" 放下左边 "+leftHand);
         }
+        Thread.yield();
     }
 
+//    错误 这里的互斥资源变成了 eater，不是勺子和叉子了，所以会出现 两个人都持有勺子  这种情况
     public synchronized void eat2(){
 
             System.out.println(name+" 拿起左边 "+leftHand);
@@ -58,5 +74,20 @@ class Eater extends Thread{
 
             System.out.println(name+" 放下左边 "+leftHand);
 
+    }
+}
+
+class Pair{
+    private Tool spoon;
+    private Tool fork;
+    public Pair(Tool spoon,Tool fork){
+        this.spoon = spoon;
+        this.fork = fork;
+    }
+    public Tool getLeft(){
+        return spoon;
+    }
+    public Tool getRight(){
+        return fork;
     }
 }
