@@ -44,7 +44,9 @@ class TypeConn {
 
 
 
-object Main extends App{
+object MyMain2 {
+  def main(args: Array[String]) {
+
 
   val t1 = new TypeConn
   t1.getCount(List(new People("ang"),new People("super")))
@@ -54,5 +56,5 @@ object Main extends App{
   val s1 = new Slary(10000)
 
   println(s1.getTax(List(s1.sinlgeChild,s1.personIncome)))
-
+  }
 }

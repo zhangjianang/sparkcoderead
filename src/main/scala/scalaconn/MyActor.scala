@@ -38,11 +38,15 @@ class MyRespond extends Actor{
   println(this)
 }
 
-object Main extends App {
+object MyMain1 {
+  def main(args: Array[String]) {
+
+
   val system = ActorSystem()
   val ac = system.actorOf(Props[MyActor])
   val re =system.actorOf(Props[MyRespond])
   ac ! "hello!"
   ac ! Student("ang",10)
   ac ! Responde("i am new",re)
+  }
 }

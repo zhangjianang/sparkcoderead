@@ -4,6 +4,18 @@ package algorithm;
  * Created by adimn on 2019/6/13.
  */
 public class DynamicMax {
+
+    private MyDao myDao;
+
+    public void setMyDao(MyDao myDao){
+        this.myDao = myDao;
+    }
+
+    public void genSthById(long id){
+
+        System.out.println("i gen id : "+myDao.getJson(id));
+    }
+
     public static int cut(int[] p,int n) {
        if(n ==0){
            return 0;

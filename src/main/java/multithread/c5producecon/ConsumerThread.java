@@ -30,8 +30,39 @@ public class ConsumerThread extends Thread {
 
     public static void main(String[] args) {
         Table table = new Table(3);
-        new ConsumerThread("cons-01",table).start();
-        new ConsumerThread("cons-002",table).start();
-        new ProducerThread("prod------1",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        new LazyThread("lazy",table).start();
+        ConsumerThread consumerThread = new ConsumerThread("cons-01", table);
+        consumerThread.start();
+
+        ConsumerThread consumerThread2 = new ConsumerThread("cons-002",table);
+        consumerThread2.start();
+
+        new ConsumerThread("cons-003",table).start();
+        new ConsumerThread("cons-004",table).start();
+
+        ProducerThread producerThread = new ProducerThread("prod------1", table);
+        producerThread.start();
+
+        new ProducerThread("prod------2", table).start();
+        new ProducerThread("prod------3", table).start();
+        new ProducerThread("prod------4", table).start();
+
+
+
+//        ClearThread clearThread = new ClearThread("clear***1",table);
+//        clearThread.start();
+
+
     }
 }

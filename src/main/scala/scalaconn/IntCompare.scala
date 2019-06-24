@@ -25,7 +25,10 @@ class MyCompair[T <: Comparable[T] ](val first:T, val second:T){
   def small = if(first.compareTo(second)>0) second else first
 }
 
-object Main extends App{
+object MyMain {
+  def main(args: Array[String]) {
+
+
   val sth = new MyCompair("ang","super")
   println(sth.small )
 
@@ -33,5 +36,5 @@ object Main extends App{
   val second = new IntCompare(20)
   val sth2 = new MyCompair(first,second)
   println(sth2.small )
-
+  }
 }
