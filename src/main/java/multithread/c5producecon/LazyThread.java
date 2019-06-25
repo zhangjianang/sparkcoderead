@@ -30,12 +30,14 @@ public class LazyThread extends Thread {
         if(x!=0){
             Object o = new Object();
             synchronized (o){
-                o.wait();
+                o.wait(x);
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        sth(10L);
+        System.out.println("begin");
+        sth(3000L);
+        System.out.println("end");
     }
 }
