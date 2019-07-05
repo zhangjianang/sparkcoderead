@@ -8,13 +8,10 @@ import java.util.concurrent.Executors;
  */
 public class MyMain {
     public static void main(String[] args) {
-//        Log log = new Log();
-//        ClientThread c1 = new ClientThread("ang",log);
-//        ClientThread c2 = new ClientThread("lili",log);
-//        ClientThread c3 = new ClientThread("john",log);
-//        c1.start();
-//        c2.start();
-//        c3.start();
+        Log log = new Log();
+        new ClientThread("ang",log).start();
+        new ClientThread("lili",log).start();
+        new ClientThread("john",log).start();
 
         practice();
     }
