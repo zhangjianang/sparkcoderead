@@ -1,12 +1,14 @@
 package annotation;
 
-import java.lang.annotation.Documented;
+import java.lang.annotation.*;
 
 /**
  * Created by adimn on 2019/8/1.
  */
 
 @Documented
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Dog {
     public String name() default "ang";
 }
@@ -16,11 +18,8 @@ public @interface Dog {
 
 }
 
-@Dog
 @Undocumented
 class UseDogAndDocumented {
-    public static void main(String[] args) {
 
-    }
 }
 

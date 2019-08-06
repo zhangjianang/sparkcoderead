@@ -12,8 +12,10 @@ public class DogHandleer {
         for(Method mt : methods){
             Dog ac =(Dog) mt.getAnnotation(Dog.class);
             String result =ac.name();
-            if(result.equals("0")){
+            if(result.equals("10")){
                 // 0 表示要执行
+                mt.invoke(obj);
+            }else if ("ang".equals(result)){
                 mt.invoke(obj);
             }
         }
