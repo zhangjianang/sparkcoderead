@@ -1,0 +1,20 @@
+
+server:
+  port: 8580
+ 
+spring:
+  datasource:
+    username: ***
+    password: ***
+    url: jdbc:mysql://***:33060/practice?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+ 
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.ang.entity
+ 
+#showSql
+logging:
+  level:
+    com:
+      example:
