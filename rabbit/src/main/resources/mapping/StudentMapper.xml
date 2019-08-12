@@ -15,6 +15,28 @@
 
     <insert id="Ins" parameterType="com.ang.entity.Student"
             useGeneratedKeys="true" keyProperty="student.id">
-        insert into student (name,age,gender) values(#{student.name},#{student.age},#{student.gender})
+        insert into student (name,age,gender) values(#{name},#{age},#{gender})
     </insert>
+
+
+    <resultMap id="ScoreMap" type="java.util.HashMap">
+        <id column="id" property="id"/>
+        <!-- 用result属性来映射非主键字段，property为实体类属性名，column为数据表中的属性-->
+        <result column="score" property="score"/>
+        <association  property="student" javaType="com.ang.entity.Student">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+        <association property="course" javaType="com.ang.entity.Course">
+            <id column="id" property="id"/>
+            <result column="coname" property="coname"/>
+        </association>
+        <!--
+        <collection>
+        -->
+    </resultMap>
+
+    <select id="Score" resultType="java.util.ArrayList" resultMap="ScoreMap">
+        select score.id,score,student.id,student.name,corse.id,corse.coname  from score join student on student.id = score.sid join corse on score.cid = corse.id
+    </select>
 </mapper>
