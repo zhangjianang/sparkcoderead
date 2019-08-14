@@ -48,8 +48,5 @@ public class MultiRecv {
             }
 
         };
-
-        channel.basicConsume(QUEUE_NAME_ALL,consumer);
-
     }
 }
