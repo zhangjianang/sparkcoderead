@@ -29,8 +29,10 @@ public class MultiRecv {
 
         System.out.println("waiting to receive");
 
+        // accept only one unack-ed message at a time (see below)
         channel.basicQos(1);
 
+        /*
         DefaultConsumer consumer = new DefaultConsumer(channel) {
 
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws UnsupportedEncodingException {
@@ -48,5 +50,33 @@ public class MultiRecv {
             }
 
         };
+           */
+
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+            String message = new String(delivery.getBody(), "UTF-8");
+            System.out.println("mode: "+delivery.getProperties().getDeliveryMode());
+            System.out.println(" [x] Received '" + message + "'");
+            try {
+                doWork(message);
+            } finally {
+                System.out.println(" [x] Done");
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+            }
+        };
+        boolean autoAck = false;
+        channel.basicConsume(QUEUE_NAME_ALL, autoAck, deliverCallback, consumerTag -> {
+        });
+    }
+
+    public static void doWork(String message) {
+        for (char ch : message.toCharArray()) {
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException _ignored) {
+                Thread.currentThread().interrupt();
+            }
+
+        }
     }
 }
